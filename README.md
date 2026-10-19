@@ -2,13 +2,7 @@
 
 ## Fedora
 
-- Full 5GB Latex
-```sh
-sudo dnf upgrade --refresh
-sudo dnf install -y git make gcc-c++ python3 texlive-scheme-full
-```
-
-- Minimalist
+### Latex fonts
 ```sh
 sudo dnf install -y \
   git \
@@ -39,4 +33,9 @@ sudo dnf install -y \
   texlive-dvips \
   texlive-ec \
   texlive-cm
+```
+### Latex env
+
+```sh
+sudo dnf install texlive-scheme-full
 ```
