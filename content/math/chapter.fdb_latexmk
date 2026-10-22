@@ -1,0 +1,18 @@
+# Fdb version 4
+["pdflatex"] 1792637614.6045 "/home/anvnhi/kactl/content/math/chapter.tex" "chapter.pdf" "chapter" 1792637614.85595 2
+  "/home/anvnhi/kactl/content/math/chapter.tex" 1792637614.51628 6197 b7364608c30ba13d883cde01880b047e ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx5.tfm" 1136768653 1332 f817c21a1ba54560425663374f1b651a ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx7.tfm" 1136768653 1336 3125ccb448c1a09074e3aa4a9832f130 ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmti10.tfm" 1136768653 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm" 1136768653 768 1321e9409b4137d6fb428ac9dc956269 ""
+  "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1777593600 43785 66587115382950aca692b5f6e3c2fb74 ""
+  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1791997838 229312 b310db1c591c7bed586fadd37215732c ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1791997829 2234120 eaa54b0aabd659960d5a74ddaad895b9 ""
+  "chapter.aux" 1792598234.44116 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "chapter.tex" 1792637614.51628 6197 b7364608c30ba13d883cde01880b047e ""
+  (generated)
+  "chapter.aux"
+  "chapter.log"
+  "chapter.pdf"
+  (rewritten before read)

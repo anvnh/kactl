@@ -49,17 +49,16 @@
 
 % Some default config
 \subtitle{{\tiny new}KACTL}
-\title{KTH Algorithm Competition Template Library}
+\title{Algorithm Competition Template Library}
 \newcommand{\PDFColor}{0}
 \def\@builddir{build}
 
 \def\today{\number\year-\ifthenelse{\number\month<10}{0}{}\number\month-\ifthenelse{\number\day<10}{0}{}\number\day} % Defines \today as YYYY-MM-DD
 
-\renewcommand{\maketitle}[2]{
+\renewcommand{\maketitle}[1]{
 	\begin{center}
 		{\Huge \@title}\\
-		{\huge \@subtitle{} version #2}\\[0.1cm]
-		{\Huge \textsc{#1}}
+		{\huge #1}
 	\end{center}
 }
 

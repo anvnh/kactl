@@ -1,0 +1,12 @@
+# Fdb version 4
+["pdflatex"] 1792597468.28432 "/home/anvnhi/kactl/content/geometry/chapter.tex" "chapter.pdf" "chapter" 1792597468.35898 2
+  "/home/anvnhi/kactl/content/geometry/chapter.tex" 1792597468.19412 517 56aa3ce62200f8982e6f3a6c95bcb2b5 ""
+  "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1777593600 43785 66587115382950aca692b5f6e3c2fb74 ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1791997829 2234120 eaa54b0aabd659960d5a74ddaad895b9 ""
+  "chapter.aux" 1792596854.81319 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "chapter.tex" 1792597468.19412 517 56aa3ce62200f8982e6f3a6c95bcb2b5 ""
+  (generated)
+  "chapter.aux"
+  "chapter.log"
+  "chapter.pdf"
+  (rewritten before read)

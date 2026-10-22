@@ -1,0 +1,12 @@
+# Fdb version 4
+["pdflatex"] 1792602966.61053 "/home/anvnhi/kactl/content/data-structures/chapter.tex" "chapter.pdf" "chapter" 1792602966.6698 2
+  "/home/anvnhi/kactl/content/data-structures/chapter.tex" 1792602966.49208 442 e9e6921b94c0bd59d8b4fcfea1bb3223 ""
+  "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1777593600 43785 66587115382950aca692b5f6e3c2fb74 ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1791997829 2234120 eaa54b0aabd659960d5a74ddaad895b9 ""
+  "chapter.aux" 1792602590.47222 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "chapter.tex" 1792602966.49208 442 e9e6921b94c0bd59d8b4fcfea1bb3223 ""
+  (generated)
+  "chapter.aux"
+  "chapter.log"
+  "chapter.pdf"
+  (rewritten before read)
