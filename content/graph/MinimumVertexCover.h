@@ -8,6 +8,7 @@
  * Status: stress-tested
  */
 #pragma once
+#include <cassert>
 
 #include "DFSMatching.h"
 

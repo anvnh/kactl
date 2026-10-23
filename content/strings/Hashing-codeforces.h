@@ -8,6 +8,7 @@
  * Status: stress-tested
  */
 #pragma once
+#include <cassert>
 
 typedef uint64_t ull;
 static int C; // initialized below

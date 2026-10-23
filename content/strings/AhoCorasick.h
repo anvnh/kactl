@@ -16,6 +16,7 @@
  * Status: stress-tested
  */
 #pragma once
+#include <cassert>
 
 struct AhoCorasick {
 	enum {alpha = 26, first = 'A'}; // change this!

@@ -14,6 +14,7 @@
  * Status: stress-tested against old HLD
  */
 #pragma once
+#include <cassert>
 
 #include "../data-structures/LazySegmentTree.h"
 

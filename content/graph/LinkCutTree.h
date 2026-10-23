@@ -9,6 +9,7 @@
  * Status: Stress-tested a bit for N <= 20
  */
 #pragma once
+#include <cassert>
 
 struct Node { // Splay tree. Root's pp contains tree's parent.
 	Node *p = 0, *pp = 0, *c[2];

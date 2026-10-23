@@ -7,6 +7,7 @@
  * Status: stress-tested
  */
 #pragma once
+#include <cassert>
 
 #include "Point.h"
 

@@ -15,6 +15,7 @@
  * Status: stress-tested
  */
 #pragma once
+#include <cassert>
 
 struct BinaryTrie {
 	static const int B = 30; // 30 bits for values < 2^30 (~1e9)
@@ -25,6 +26,7 @@ struct BinaryTrie {
 	vector<Node> t = {Node()};
 	void insert(int x, int v = 1) { // v = -1 to erase
 		int u = 0;
+		t[u].cnt += v;
 		for (int i = B - 1; i >= 0; --i) {
 			int b = (x >> i) & 1;
 			if (!t[u].ch[b]) {
@@ -66,17 +68,20 @@ struct BinaryTrie {
 	}
 	// Count number of elements y in trie such that (x ^ y) <= k
 	int countLeq(int x, int k) {
-		int u = 0, ans = 0;
-		for (int i = B - 1; i >= 0 && u; --i) {
-			int bx = (x >> i) & 1, bk = (k >> i) & 1;
-			if (bk) {
-				if (t[u].ch[bx]) ans += t[t[u].ch[bx]].cnt;
-				u = t[u].ch[!bx];
-			} else {
-				u = t[u].ch[bx];
-			}
-		}
-		if (u) ans += t[u].cnt;
-		return ans;
-	}
+        if (k < 0) return 0;
+        if (k >= (1 << B)) return t[0].cnt;
+
+        int u = 0, ans = 0;
+        for (int i = B - 1; i >= 0; --i) {
+            int bx = (x >> i) & 1, bk = (k >> i) & 1;
+            if (bk) {
+                if (t[u].ch[bx]) ans += t[t[u].ch[bx]].cnt;
+                u = t[u].ch[!bx];
+            } else {
+                u = t[u].ch[bx];
+            }
+            if (!u) return ans;
+        }
+        return ans + t[u].cnt;
+    }
 };

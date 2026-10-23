@@ -7,6 +7,7 @@
  * some number first and then you can use the structure.
  */
 #pragma once
+#include <cassert>
 
 #include "euclid.h"
 

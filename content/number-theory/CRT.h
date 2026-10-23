@@ -11,6 +11,7 @@
  * Status: Works
  */
 #pragma once
+#include <cassert>
 
 #include "euclid.h"
 

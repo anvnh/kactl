@@ -11,6 +11,7 @@
  * Status: tested
  */
 #pragma once
+#include <cassert>
 
 template<class T, int N> struct Matrix {
 	typedef Matrix M;

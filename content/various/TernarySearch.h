@@ -13,6 +13,7 @@
  * Status: tested
  */
 #pragma once
+#include <cassert>
 
 template<class F>
 int ternSearch(int a, int b, F f) {

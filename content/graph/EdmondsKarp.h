@@ -8,6 +8,7 @@
  * Status: stress-tested
  */
 #pragma once
+#include <cassert>
 
 template<class T> T edmondsKarp(vector<unordered_map<int, T>>&
 		graph, int source, int sink) {

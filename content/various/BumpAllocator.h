@@ -8,6 +8,7 @@
  * Status: tested
  */
 #pragma once
+#include <cassert>
 
 // Either globally or in a single class:
 static char buf[450 << 20];

@@ -9,6 +9,7 @@
  * Status: stress-tested
  */
 #pragma once
+#include <cassert>
 
 struct Line {
 	mutable ll k, m, p;

@@ -9,6 +9,7 @@
  * Status: bruteforce-tested for n, m <= 4
  */
 #pragma once
+#include <cassert>
 
 typedef bitset<1000> bs;
 

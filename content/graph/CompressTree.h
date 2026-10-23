@@ -11,6 +11,7 @@
  * Status: Tested at CodeForces
  */
 #pragma once
+#include <cassert>
 
 #include "LCA.h"
 

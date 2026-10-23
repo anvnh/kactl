@@ -9,6 +9,7 @@
  * Status: not very well tested
  */
 #pragma once
+#include <cassert>
 
 #include "../numerical/MatrixInverse-mod.h"
 

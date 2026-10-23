@@ -12,6 +12,7 @@
  * Status: stress-tested
  */
 #pragma once
+#include <cassert>
 
 template<class T>
 struct RMQ {
