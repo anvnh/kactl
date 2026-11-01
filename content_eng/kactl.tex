@@ -1,0 +1,35 @@
+\documentclass[9pt, a4paper, notitlepage]{extreport}
+\usepackage{kactlpkg}
+\kactlcontentdir{content}
+
+\university{VKU}{Vietnam–Korea University of Information and Communication Technology}{vku}
+\team{VKU\_TLE\_WA\_CE}{Vo Nguyen Hoang An, Nguyen Tung Lam, Nguyen Van Phung}
+\contest{The ICPC 2026 - Vietnam Central Provincial Contest}{Oct 25, 2026}
+% \contest{\ }{\today}
+% \enablecolors
+
+\begin{document}
+	\maketeampage
+	% \maketitle{version 1 (\today)}
+	\begin{multicols*}{3}
+	\thispagestyle{fancy}
+
+	\setcounter{tocdepth}{0}
+	\tableofcontents
+
+	\kactlchapter{contest}
+	\kactlchapter{math}
+	\kactlchapter{data-structures}
+	\kactlchapter{numerical}
+	\kactlchapter{number-theory}
+	\kactlchapter{combinatorial}
+	\kactlchapter{graph}
+	\kactlchapter{geometry}
+	\kactlchapter{strings}
+	\kactlchapter{various}
+	\end{multicols*}
+
+	\begin{multicols*}{3}
+	\kactlchapter{appendix}
+	\end{multicols*}
+\end{document}

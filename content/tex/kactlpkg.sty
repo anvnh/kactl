@@ -3,6 +3,8 @@
 \ProvidesPackage{kactlpkg}
 
 \usepackage[utf8]{inputenc}             % Encoding UTF-8
+\usepackage[T1,T5]{fontenc}             % Accented Latin and Vietnamese characters
+\newcommand{\vi}[1]{{\fontencoding{T5}\selectfont #1}}
 \usepackage{listings}                   % Source code listings
 \usepackage{framed}                     % Source code listings
 \usepackage[a4paper,landscape,hmargin={0.5cm,0.5cm},vmargin={1.0cm,0.4cm}]{geometry}
@@ -200,7 +202,34 @@
 \lstset{breaklines=true}
 \lstset{basicstyle=\footnotesize\ttfamily}
 \lstset{commentstyle=\normalfont\itshape}
-\lstset{literate={^}{\caret}{1} {~}{\tilde}{1} {\{}{\nicelbrace}{1} {\}}{\nicerbrace}{1}}
+\lstset{literate={^}{\caret}{1} {~}{\tilde}{1} {\{}{\nicelbrace}{1} {\}}{\nicerbrace}{1}
+	{à}{{\vi{\char160}}}1 {á}{{\vi{\char161}}}1 {ã}{{\vi{\char162}}}1 {ả}{{\vi{\char163}}}1 {ạ}{{\vi{\char164}}}1
+	{â}{{\vi{\char165}}}1 {ầ}{{\vi{\char166}}}1 {ấ}{{\vi{\char167}}}1 {ẫ}{{\vi{\char168}}}1 {ẩ}{{\vi{\char169}}}1
+	{ậ}{{\vi{\char170}}}1 {ă}{{\vi{\char171}}}1 {ằ}{{\vi{\char172}}}1 {ắ}{{\vi{\char173}}}1 {ẵ}{{\vi{\char174}}}1
+	{ẳ}{{\vi{\char175}}}1 {ặ}{{\vi{\char176}}}1 {è}{{\vi{\char177}}}1 {é}{{\vi{\char178}}}1 {ẽ}{{\vi{\char179}}}1
+	{ẻ}{{\vi{\char180}}}1 {ẹ}{{\vi{\char181}}}1 {ê}{{\vi{\char182}}}1 {ề}{{\vi{\char183}}}1 {ế}{{\vi{\char184}}}1
+	{ễ}{{\vi{\char185}}}1 {ể}{{\vi{\char186}}}1 {ệ}{{\vi{\char187}}}1 {ì}{{\vi{\char188}}}1 {í}{{\vi{\char189}}}1
+	{ĩ}{{\vi{\char190}}}1 {ỉ}{{\vi{\char191}}}1 {ị}{{\vi{\char224}}}1 {ò}{{\vi{\char225}}}1 {ó}{{\vi{\char226}}}1
+	{õ}{{\vi{\char227}}}1 {ỏ}{{\vi{\char228}}}1 {ọ}{{\vi{\char229}}}1 {ô}{{\vi{\char230}}}1 {ồ}{{\vi{\char231}}}1
+	{ố}{{\vi{\char232}}}1 {ỗ}{{\vi{\char233}}}1 {ổ}{{\vi{\char234}}}1 {ộ}{{\vi{\char235}}}1 {ơ}{{\vi{\char236}}}1
+	{ờ}{{\vi{\char237}}}1 {ớ}{{\vi{\char238}}}1 {ỡ}{{\vi{\char239}}}1 {ở}{{\vi{\char240}}}1 {ợ}{{\vi{\char241}}}1
+	{ù}{{\vi{\char242}}}1 {ú}{{\vi{\char243}}}1 {ũ}{{\vi{\char244}}}1 {ủ}{{\vi{\char245}}}1 {ụ}{{\vi{\char246}}}1
+	{ư}{{\vi{\char247}}}1 {ừ}{{\vi{\char248}}}1 {ứ}{{\vi{\char249}}}1 {ữ}{{\vi{\char250}}}1 {ử}{{\vi{\char251}}}1
+	{ự}{{\vi{\char252}}}1 {ỳ}{{\vi{\char253}}}1 {ý}{{\vi{\char254}}}1 {ỹ}{{\vi{\char222}}}1 {ỷ}{{\vi{\char255}}}1
+	{ỵ}{{\vi{\char29}}}1 {đ}{{\vi{\char31}}}1 {Đ}{{\vi{\char30}}}1 {À}{{\vi{\char128}}}1 {Á}{{\vi{\char129}}}1
+	{Ã}{{\vi{\char130}}}1 {Ả}{{\vi{\char131}}}1 {Ạ}{{\vi{\char132}}}1 {Â}{{\vi{\char133}}}1 {Ầ}{{\vi{\char134}}}1
+	{Ấ}{{\vi{\char135}}}1 {Ẫ}{{\vi{\char136}}}1 {Ẩ}{{\vi{\char137}}}1 {Ậ}{{\vi{\char138}}}1 {Ă}{{\vi{\char139}}}1
+	{Ằ}{{\vi{\char140}}}1 {Ắ}{{\vi{\char141}}}1 {Ẵ}{{\vi{\char142}}}1 {Ẳ}{{\vi{\char143}}}1 {Ặ}{{\vi{\char144}}}1
+	{È}{{\vi{\char145}}}1 {É}{{\vi{\char146}}}1 {Ẽ}{{\vi{\char147}}}1 {Ẻ}{{\vi{\char148}}}1 {Ẹ}{{\vi{\char149}}}1
+	{Ê}{{\vi{\char150}}}1 {Ề}{{\vi{\char151}}}1 {Ế}{{\vi{\char152}}}1 {Ễ}{{\vi{\char153}}}1 {Ể}{{\vi{\char154}}}1
+	{Ệ}{{\vi{\char155}}}1 {Ì}{{\vi{\char156}}}1 {Í}{{\vi{\char157}}}1 {Ĩ}{{\vi{\char158}}}1 {Ỉ}{{\vi{\char159}}}1
+	{Ị}{{\vi{\char192}}}1 {Ò}{{\vi{\char193}}}1 {Ó}{{\vi{\char194}}}1 {Õ}{{\vi{\char195}}}1 {Ỏ}{{\vi{\char196}}}1
+	{Ọ}{{\vi{\char197}}}1 {Ô}{{\vi{\char198}}}1 {Ồ}{{\vi{\char199}}}1 {Ố}{{\vi{\char200}}}1 {Ỗ}{{\vi{\char201}}}1
+	{Ổ}{{\vi{\char202}}}1 {Ộ}{{\vi{\char203}}}1 {Ơ}{{\vi{\char204}}}1 {Ờ}{{\vi{\char205}}}1 {Ớ}{{\vi{\char206}}}1
+	{Ỡ}{{\vi{\char207}}}1 {Ở}{{\vi{\char208}}}1 {Ợ}{{\vi{\char209}}}1 {Ù}{{\vi{\char210}}}1 {Ú}{{\vi{\char211}}}1
+	{Ũ}{{\vi{\char212}}}1 {Ủ}{{\vi{\char213}}}1 {Ụ}{{\vi{\char214}}}1 {Ư}{{\vi{\char215}}}1 {Ừ}{{\vi{\char216}}}1
+	{Ứ}{{\vi{\char217}}}1 {Ữ}{{\vi{\char218}}}1 {Ử}{{\vi{\char219}}}1 {Ự}{{\vi{\char220}}}1 {Ỳ}{{\vi{\char221}}}1
+	{Ý}{{\vi{\char222}}}1 {Ỹ}{{\vi{\char7}}}1 {Ỷ}{{\vi{\char26}}}1 {Ỵ}{{\vi{\char28}}}1}
 \lstset{emptylines=*1}
 \lstset{inputencoding=utf8}
 \lstset{aboveskip=3pt}

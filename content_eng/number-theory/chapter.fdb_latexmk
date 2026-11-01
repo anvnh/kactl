@@ -1,0 +1,12 @@
+# Fdb version 4
+["pdflatex"] 1792693881.98918 "/home/anvnhi/kactl/content/number-theory/chapter.tex" "chapter.pdf" "chapter" 1792693882.16487 2
+  "/home/anvnhi/kactl/content/number-theory/chapter.tex" 1792693881.88623 2553 b4699bc478278d12c79c29f7a3f6d014 ""
+  "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1777593600 43785 66587115382950aca692b5f6e3c2fb74 ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1791997829 2234120 eaa54b0aabd659960d5a74ddaad895b9 ""
+  "chapter.aux" 1792692859.66799 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "chapter.tex" 1792693881.88623 2553 b4699bc478278d12c79c29f7a3f6d014 ""
+  (generated)
+  "chapter.aux"
+  "chapter.log"
+  "chapter.pdf"
+  (rewritten before read)
