@@ -86,6 +86,189 @@ If $n' \ge 0$:
 \[ \binom{n' + k - 1}{k - 1} \]
 \textbf{Upper bounds} ($x_i \le u_i$): Apply the Principle of Inclusion-Exclusion by negating constraints ($x_i \ge u_i + 1$).
 
+\section{Binomial and Multinomial Coefficients}
+
+\subsection{Binomial Coefficients}
+
+The binomial coefficient $\binom{n}{r}$ counts the number of ways to
+choose $r$ elements from a set of $n$ distinct elements, regardless
+of order.
+
+\[
+\binom{n}{r} = \frac{n!}{r!(n-r)!},
+\qquad 0 \le r \le n
+\]
+
+Special cases:
+\[
+\binom{n}{0} = \binom{n}{n} = 1
+\]
+
+Symmetry:
+\[
+\binom{n}{r} = \binom{n}{n-r}
+\]
+
+Pascal's identity:
+\[
+\binom{n}{r}
+= \binom{n-1}{r-1} + \binom{n-1}{r}
+\]
+
+Multiplicative recurrence:
+\[
+\binom{n}{r}
+= \binom{n}{r-1}\frac{n-r+1}{r}
+\]
+
+Binomial theorem:
+\[
+(x+y)^n = \sum_{r=0}^{n} \binom{n}{r}x^r y^{n-r}
+\]
+
+Useful identities:
+\[
+\sum_{r=0}^{n}\binom{n}{r} = 2^n
+\]
+\[
+\sum_{r=0}^{n}(-1)^r\binom{n}{r} = 0
+\qquad (n > 0)
+\]
+\[
+\sum_{r=0}^{n}\binom{n}{r}^2 = \binom{2n}{n}
+\]
+
+\subsection{Multinomial Coefficients}
+
+The multinomial coefficient counts the number of ways to partition
+$n$ distinct elements into $k$ labeled groups of sizes
+$a_1,a_2,\ldots,a_k$, where
+$a_1+a_2+\cdots+a_k=n$.
+
+\[
+\binom{n}{a_1,a_2,\ldots,a_k}
+= \frac{n!}{a_1!a_2!\cdots a_k!}
+\]
+
+It can be computed as a product of ordinary binomial coefficients:
+\[
+\binom{n}{a_1,a_2,\ldots,a_k}
+=
+\binom{n}{a_1}
+\binom{n-a_1}{a_2}
+\binom{n-a_1-a_2}{a_3}
+\cdots
+\binom{a_k}{a_k}
+\]
+
+Multinomial theorem:
+\[
+(x_1+x_2+\cdots+x_k)^n
+=
+\sum_{\substack{a_1+\cdots+a_k=n\\a_i\ge0}}
+\binom{n}{a_1,\ldots,a_k}
+x_1^{a_1}\cdots x_k^{a_k}
+\]
+
+\subsection{Computing Binomial Coefficients}
+
+\textbf{Multiplicative method:}
+Computes $\binom{n}{r}$ in $\mathcal{O}(\min(r,n-r))$ time
+using integer arithmetic. Use symmetry to minimize the number
+of iterations.
+
+\begin{lstlisting}[language=C++]
+using ll = long long;
+
+ll C(int n, int r) {
+    if (r < 0 || r > n) return 0;
+    r = min(r, n - r);
+
+    ll res = 1;
+    for (int i = 0; i < r; ++i) {
+        res = res * (n - i) / (i + 1);
+    }
+    return res;
+}
+\end{lstlisting}
+
+This implementation assumes all intermediate products fit in
+\texttt{long long}. For large results, use a larger integer type
+or cap the result with overflow-safe arithmetic if only a bounded
+answer is needed.
+
+\textbf{Pascal's triangle:}
+When many queries are given and $n$ is relatively small, precompute
+all binomial coefficients in $\mathcal{O}(N^2)$ time and memory.
+
+\begin{lstlisting}[language=C++]
+const int N = 2000;
+ll C[N + 1][N + 1];
+
+void init() {
+    for (int n = 0; n <= N; ++n) {
+        C[n][0] = C[n][n] = 1;
+        for (int r = 1; r < n; ++r) {
+            C[n][r] = C[n - 1][r - 1] + C[n - 1][r];
+        }
+    }
+}
+\end{lstlisting}
+
+\textbf{Modulo a prime:}
+If $M$ is prime and $N < M$, factorials and inverse factorials
+allow each binomial coefficient to be computed in $\mathcal{O}(1)$
+after $\mathcal{O}(N+\log M)$ preprocessing.
+
+\[
+\binom{n}{r}
+\equiv
+n!\,(r!)^{-1}\,((n-r)!)^{-1}
+\pmod M
+\]
+
+Using Fermat's little theorem:
+\[
+x^{-1} \equiv x^{M-2} \pmod M
+\]
+
+\begin{lstlisting}[language=C++]
+const int N = 1000000;
+const ll MOD = 1000000007;
+
+ll fact[N + 1], invFact[N + 1];
+
+ll modpow(ll a, ll e) {
+    ll res = 1;
+    while (e > 0) {
+        if (e & 1) res = res * a % MOD;
+        a = a * a % MOD;
+        e >>= 1;
+    }
+    return res;
+}
+
+void init() {
+    fact[0] = 1;
+    for (int i = 1; i <= N; ++i)
+        fact[i] = fact[i - 1] * i % MOD;
+
+    invFact[N] = modpow(fact[N], MOD - 2);
+    for (int i = N; i >= 1; --i)
+        invFact[i - 1] = invFact[i] * i % MOD;
+}
+
+ll C(int n, int r) {
+    if (r < 0 || r > n) return 0;
+    return fact[n] * invFact[r] % MOD
+                  * invFact[n - r] % MOD;
+}
+\end{lstlisting}
+
+The factorial/inverse-factorial method requires a prime modulus
+and $N < M$. It does not directly apply to arbitrary composite
+moduli.
+
 \subsection{Geometric Series Modulo Arbitrary M}
 To compute $S(n) = \sum_{i=0}^{n} a^i = 1 + a + a^2 + \dots + a^n \pmod M$ in $\mathcal{O}(\log^2 n)$ (or $\mathcal{O}(\log n)$) without requiring modular inverse (valid for composite $M$):
 If $n = 0$: $S(0) = 1$. \\
