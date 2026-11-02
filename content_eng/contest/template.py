@@ -14,7 +14,7 @@ from itertools import (
 )
 from functools import lru_cache, cmp_to_key, reduce
 from operator import itemgetter, mul, xor
-# Only need when problem state
 from fractions import Fraction
 from decimal import Decimal, getcontext
+getcontext().prec = 20
 from array import array

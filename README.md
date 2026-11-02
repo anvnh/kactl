@@ -10,7 +10,7 @@ sudo dnf install -y \
   gcc-c++ \
   python3 \
   texlive \
-  textlive-vntex \
+  texlive-vntex \
   texlive-extsizes \
   texlive-listings \
   texlive-framed \

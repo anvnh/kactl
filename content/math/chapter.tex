@@ -3,30 +3,63 @@
 
 \chapter{Mathematics}
 
-\section{Equations}
-\[ax^2+bx+c=0 \Rightarrow x = \frac{-b\pm\sqrt{b^2-4ac}}{2a}\]
+\section{Phương trình}
 
-The extremum is given by $x = -b/2a$.
+\subsection{Phương trình bậc hai}
+Xét phương trình $ax^2 + bx + c = 0$ ($a \neq 0$), $\Delta = b^2 - 4ac$:
+\[ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \]
+\textbf{Tọa độ đỉnh parabol (cực trị):} Đạt tại $x = -\frac{b}{2a}$, giá trị tương ứng $y = -\frac{\Delta}{4a}$ \\
+\textbf{Định lý Viète:} \quad $x_1 + x_2 = \frac{b}{a}$ \quad $x_1 x_2 = \frac{c}{a}$ \\
 
-\[\begin{aligned}ax+by=e\\cx+dy=f\end{aligned}
-\Rightarrow
-\begin{aligned}x=\dfrac{ed-bf}{ad-bc}\\y=\dfrac{af-ec}{ad-bc}\end{aligned}\]
+\subsection{Hệ phương trình bậc nhất hai ẩn (Quy tắc Cramer 2x2)}
+Dùng để giải hệ phương trình tuyến tính hoặc tìm nhanh giao điểm 2 đường thẳng:
+\[ \begin{cases} ax + by = e \\ cx + dy = f \end{cases} \implies
+x = \frac{ed - bf}{ad - bc}, \quad y = \frac{af - ec}{ad - bc} \]
+Nếu định thức $D = ad - bc = 0$: Hệ vô nghiệm (hai đường song song) hoặc vô số nghiệm (hai đường trùng nhau).
 
-In general, given an equation $Ax = b$, the solution to a variable $x_i$ is given by
-\[x_i = \frac{\det A_i'}{\det A} \]
-where $A_i'$ is $A$ with the $i$'th column replaced by $b$.
+\subsection{Hệ phương trình tuyến tính tổng quát}
+Cho hệ $Ax = b$ với $A$ là ma trận vuông không suy biến ($\det A \neq 0$):
+\[ x_i = \frac{\det A_i'}{\det A} \]
+Trong đó $A_i'$ là ma trận nhận được từ ma trận $A$ sau khi thay thế cột thứ $i$ bằng vector cột $b$. (Thực tế chỉ dùng nhẩm tay cho hệ $2 \times 2$ và $3 \times 3$; hệ lớn hơn giải bằng khử Gauss).
 
-\section{Recurrences}
-If $a_n = c_1 a_{n-1} + \dots + c_k a_{n-k}$, and $r_1, \dots, r_k$ are distinct roots of $x^k - c_1 x^{k-1} - \dots - c_k$, there are $d_1, \dots, d_k$ s.t.
-\[a_n = d_1r_1^n + \dots + d_kr_k^n. \]
-Non-distinct roots $r$ become polynomial factors, e.g. $a_n = (d_1n + d_2)r^n$.
+\section{Công thức truy hồi (Recurrences)}
 
-\section{Trigonometry}
+\subsection{Phương trình đặc trưng (Hệ thức truy hồi tuyến tính thuần nhất)}
+Xét hệ thức truy hồi tuyến tính cấp $k$:
+\[ a_n = c_1 a_{n-1} + c_2 a_{n-2} + \dots + c_k a_{n-k} \]
+Thiết lập phương trình đa thức đặc trưng:
+\[ P(x) = x^k - c_1 x^{k-1} - c_2 x^{k-2} - \dots - c_k = 0 \]
+\textbf{Trường hợp nghiệm phân biệt:} Nếu phương trình có $k$ nghiệm phân biệt $r_1, r_2, \dots, r_k$, công thức tổng quát là:
+\[ a_n = d_1 r_1^n + d_2 r_2^n + \dots + d_k r_k^n \]
+(Xác định các hệ số $d_i$ bằng cách thế các giá trị khởi tạo ban đầu $a_0, a_1, \dots, a_{k-1}$ để giải hệ phương trình tuyến tính) \\
+\textbf{Trường hợp nghiệm bội:} Nếu nghiệm $r$ lặp lại $m$ lần (bội $m$), nó sẽ đóng góp một nhân tử đa thức bậc $m-1$:
+\[ (d_1 + d_2 n + d_3 n^2 + \dots + d_m n^{m-1}) r^n \] \\
+\textbf{Ví dụ dãy Fibonacci:} $F_n = F_{n-1} + F_{n-2}$ với $F_0 = 0, F_1 = 1$. \\
+Phương trình đặc trưng: $x^2 - x - 1 = 0 \implies r = \frac{1 \pm \sqrt{5}}{2}$. \\
+Công thức Binet dạng đóng:
+\[ F_n = \frac{1}{\sqrt{5}} \left[ \left(\frac{1+\sqrt{5}}{2}\right)^n - \left(\frac{1-\sqrt{5}}{2}\right)^n \right] \]
+
+\subsection{Nhân ma trận giải công thức truy hồi (Matrix Exponentiation)}
+Áp dụng khi cần tính số hạng thứ $n$ với giá trị $n$ rất lớn ($n \le 10^{18}$) và bậc truy hồi nhỏ ($k \le 50$) trong độ phức tạp $\mathcal{O}(k^3 \log n)$:
+\[
+\begin{bmatrix} a_n \\ a_{n-1} \\ a_{n-2} \\ \vdots \\ a_{n-k+1} \end{bmatrix}
+=
+\begin{bmatrix}
+c_1 & c_2 & c_3 & \dots & c_k \\
+1   & 0   & 0   & \dots & 0   \\
+0   & 1   & 0   & \dots & 0   \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+0   & 0   & 0   & \dots & 0
+\end{bmatrix}
+\begin{bmatrix} a_{n-1} \\ a_{n-2} \\ a_{n-3} \\ \vdots \\ a_{n-k} \end{bmatrix}
+\]
+
+\section{Lượng giác}
 \begin{align*}
 	a\cos x+b\sin x&=r\cos(x-\phi)\\
 	a\sin x+b\cos x&=r\sin(x+\phi)
 \end{align*}
-where $r=\sqrt{a^2+b^2}, \phi=\operatorname{atan2}(b,a)$.
+với $r=\sqrt{a^2+b^2}, \phi=\operatorname{atan2}(b,a)$.
 
 \section{Geometry}
 
@@ -51,22 +84,7 @@ magic flux $F=b^2+d^2-a^2-c^2$:
 For cyclic quadrilaterals the sum of opposite angles is $180^\circ$,
 $ef = ac + bd$, and $A = \sqrt{(p-a)(p-b)(p-c)(p-d)}$. \\
 
-\subsection{Pick's Theorem}
-For a simple polygon with integer coordinates:
-\[ A = I + \frac{B}{2} - 1 \iff I = \frac{2A - B + 2}{2} \]
-
-$I$: Number of integer lattice points strictly \textbf{inside} the polygon. \\
-$B$: Number of integer lattice points on the \textbf{boundary} (including vertices): \\
-$A$: Area of the polygon. \\
-\[ B = \sum_{i=0}^{n-1} \gcd(|x_i - x_{(i+1)\%n}|, |y_i - y_{(i+1)\%n}|) \]
-
-\textbf{Implementation Notes:} \\
-\textbf{Avoid floats:} Use \texttt{polygonArea2} directly to get $2A = |\texttt{polygonArea2(pts)}|$, then compute $I = (2A - B + 2) / 2$ via integer arithmetic. \\
-\textbf{Orientation:} Wrap \texttt{polygonArea2} with \texttt{abs()} since clockwise vertex ordering produces a negative signed area. \\
-\textbf{Overflow:} Cast coordinates to \texttt{Point<long long>}; cross products overflow 32-bit signed integers when coordinates $\ge 10^5$. \\
-\textbf{Ordering:} Vertices must appear in sequential order around the polygon boundary (e.g., from input or output of \texttt{convexHull}). \\
-
-\section{Sums}
+\section{Tổng}
 \[ c^a + c^{a+1} + \dots + c^{b} = \frac{c^{b+1} - c^a}{c-1}, c \neq 1 \]
 \begin{align*}
 	1 + 2 + 3 + \dots + n &= \frac{n(n+1)}{2} \\
@@ -75,236 +93,70 @@ $A$: Area of the polygon. \\
 	1^4 + 2^4 + 3^4 + \dots + n^4 &= \frac{n(n+1)(2n+1)(3n^2 + 3n - 1)}{30} \\
 \end{align*}
 
-\section{Stars and Bars}
-Number of ways to distribute $n$ identical items into $k$ distinct bins (or number of integer solutions to $x_1 + x_2 + \dots + x_k = n$):
-\textbf{Non-negative integers} ($x_i \ge 0$, empty bins allowed):
-\[ \binom{n + k - 1}{k - 1} = \binom{n + k - 1}{n} \]
-\textbf{Positive integers} ($x_i \ge 1$, each bin has at least 1 item, $n \ge k$):
-\[ \binom{n - 1}{k - 1} \]
-\textbf{Arbitrary lower bounds} ($x_i \ge c_i$): Let $n' = n - \sum_{i=1}^k c_i$.
-If $n' \ge 0$:
-\[ \binom{n' + k - 1}{k - 1} \]
-\textbf{Upper bounds} ($x_i \le u_i$): Apply the Principle of Inclusion-Exclusion by negating constraints ($x_i \ge u_i + 1$).
+\subsection{Chia kẹo (Stars and Bars)}
+Số nghiệm nguyên của $x_1 + x_2 + \dots + x_k = n$ (chia $n$ vật giống nhau vào $k$ hộp phân biệt):
+$x_i \ge 0$: $\binom{n+k-1}{k-1}$ \\
+$x_i \ge 1$ (cần $n \ge k$): $\binom{n-1}{k-1}$ \\
+$x_i \ge c_i$: đặt $n' = n - \sum c_i$, nếu $n' \ge 0$ thì đáp án là $\binom{n'+k-1}{k-1}$, ngược lại bằng $0$ \\
+$x_i \le u_i$: bù trừ theo tập $S$ các biến vi phạm ($x_i \ge u_i+1$): \\
+$$\sum_{S \subseteq [k]} (-1)^{|S|} \binom{n - \sum_{i \in S}(u_i+1) + k-1}{k-1},$$
+bỏ các số hạng có $n - \sum_{i \in S}(u_i+1) < 0$. Nếu mọi $u_i = u$ thì
+$\sum_{j=0}^{k} (-1)^j \binom{k}{j}\binom{n - j(u+1) + k-1}{k-1}$.
 
-\section{Binomial and Multinomial Coefficients}
+\section{Hệ số nhị thức và đa thức}
 
-\subsection{Binomial Coefficients}
-
-The binomial coefficient $\binom{n}{r}$ counts the number of ways to
-choose $r$ elements from a set of $n$ distinct elements, regardless
-of order.
-
-\[
-\binom{n}{r} = \frac{n!}{r!(n-r)!},
-\qquad 0 \le r \le n
-\]
-
-Special cases:
-\[
-\binom{n}{0} = \binom{n}{n} = 1
-\]
-
-Symmetry:
-\[
-\binom{n}{r} = \binom{n}{n-r}
-\]
-
-Pascal's identity:
-\[
-\binom{n}{r}
-= \binom{n-1}{r-1} + \binom{n-1}{r}
-\]
-
-Multiplicative recurrence:
-\[
-\binom{n}{r}
-= \binom{n}{r-1}\frac{n-r+1}{r}
-\]
-
-Binomial theorem:
-\[
-(x+y)^n = \sum_{r=0}^{n} \binom{n}{r}x^r y^{n-r}
-\]
-
-Useful identities:
-\[
-\sum_{r=0}^{n}\binom{n}{r} = 2^n
-\]
-\[
-\sum_{r=0}^{n}(-1)^r\binom{n}{r} = 0
-\qquad (n > 0)
-\]
-\[
-\sum_{r=0}^{n}\binom{n}{r}^2 = \binom{2n}{n}
-\]
-
-\subsection{Multinomial Coefficients}
-
-The multinomial coefficient counts the number of ways to partition
-$n$ distinct elements into $k$ labeled groups of sizes
-$a_1,a_2,\ldots,a_k$, where
-$a_1+a_2+\cdots+a_k=n$.
-
-\[
-\binom{n}{a_1,a_2,\ldots,a_k}
-= \frac{n!}{a_1!a_2!\cdots a_k!}
-\]
-
-It can be computed as a product of ordinary binomial coefficients:
-\[
-\binom{n}{a_1,a_2,\ldots,a_k}
-=
-\binom{n}{a_1}
-\binom{n-a_1}{a_2}
-\binom{n-a_1-a_2}{a_3}
-\cdots
-\binom{a_k}{a_k}
-\]
-
-Multinomial theorem:
-\[
-(x_1+x_2+\cdots+x_k)^n
-=
-\sum_{\substack{a_1+\cdots+a_k=n\\a_i\ge0}}
-\binom{n}{a_1,\ldots,a_k}
-x_1^{a_1}\cdots x_k^{a_k}
-\]
-
-\subsection{Computing Binomial Coefficients}
-
-\textbf{Multiplicative method:}
-Computes $\binom{n}{r}$ in $\mathcal{O}(\min(r,n-r))$ time
-using integer arithmetic. Use symmetry to minimize the number
-of iterations.
-
-\begin{lstlisting}[language=C++]
-using ll = long long;
-
-ll C(int n, int r) {
-    if (r < 0 || r > n) return 0;
-    r = min(r, n - r);
-
-    ll res = 1;
-    for (int i = 0; i < r; ++i) {
-        res = res * (n - i) / (i + 1);
-    }
-    return res;
-}
-\end{lstlisting}
-
-This implementation assumes all intermediate products fit in
-\texttt{long long}. For large results, use a larger integer type
-or cap the result with overflow-safe arithmetic if only a bounded
-answer is needed.
-
-\textbf{Pascal's triangle:}
-When many queries are given and $n$ is relatively small, precompute
-all binomial coefficients in $\mathcal{O}(N^2)$ time and memory.
-
-\begin{lstlisting}[language=C++]
-const int N = 2000;
-ll C[N + 1][N + 1];
-
-void init() {
-    for (int n = 0; n <= N; ++n) {
-        C[n][0] = C[n][n] = 1;
-        for (int r = 1; r < n; ++r) {
-            C[n][r] = C[n - 1][r - 1] + C[n - 1][r];
-        }
-    }
-}
-\end{lstlisting}
-
-\textbf{Modulo a prime:}
-If $M$ is prime and $N < M$, factorials and inverse factorials
-allow each binomial coefficient to be computed in $\mathcal{O}(1)$
-after $\mathcal{O}(N+\log M)$ preprocessing.
-
-\[
-\binom{n}{r}
-\equiv
-n!\,(r!)^{-1}\,((n-r)!)^{-1}
-\pmod M
-\]
-
-Using Fermat's little theorem:
-\[
-x^{-1} \equiv x^{M-2} \pmod M
-\]
-
-\begin{lstlisting}[language=C++]
-const int N = 1000000;
-const ll MOD = 1000000007;
-
-ll fact[N + 1], invFact[N + 1];
-
-ll modpow(ll a, ll e) {
-    ll res = 1;
-    while (e > 0) {
-        if (e & 1) res = res * a % MOD;
-        a = a * a % MOD;
-        e >>= 1;
-    }
-    return res;
+\subsection{Công thức cơ bản}
+{\small
+\setlength{\jot}{1pt}
+\begin{flalign*}
+&\binom{n}{r}=\frac{n!}{r!(n-r)!}=\binom{n}{n-r}, \binom{n}{r}=0\quad(r<0\text{ hoặc }r>n)\\
+&\binom{n}{r}=\binom{n-1}{r-1} +\binom{n-1}{r}=\binom{n}{r-1}\frac{n-r+1}{r}.&&\\
+&\sum_r\binom{n}{r}=2^n,\quad
+\sum_r\binom{n}{r}^2=\binom{2n}{n}.&&\\
+&\sum_{i=0}^r\binom{m}{i}
+\binom{n}{r-i}=\binom{m+n}{r}, \sum_{i=r}^n\binom{i}{r}
+=\binom{n+1}{r+1}.&&\\
+&\binom{n}{r}\text{ lẻ}
+\iff \texttt{(n \& r) == r}.&&
+\end{flalign*}
 }
 
-void init() {
-    fact[0] = 1;
-    for (int i = 1; i <= N; ++i)
-        fact[i] = fact[i - 1] * i % MOD;
+\subsection{Tính $\binom{n}{r}$}
+\kactlimport{BinomExact.h}
+\kactlimport{BinomMod.h}
 
-    invFact[N] = modpow(fact[N], MOD - 2);
-    for (int i = N; i >= 1; --i)
-        invFact[i - 1] = invFact[i] * i % MOD;
-}
+\subsection{Định lý Lucas}
+$p$ nguyên tố, $n=\overline{n_k\dots n_0}_p$, $r=\overline{r_k\dots r_0}_p$:
+$\binom{n}{r} \equiv \prod_i \binom{n_i}{r_i} \pmod p$ (bằng $0$ nếu có $n_i<r_i$).
+\kactlimport{Lucas.h}
 
-ll C(int n, int r) {
-    if (r < 0 || r > n) return 0;
-    return fact[n] * invFact[r] % MOD
-                  * invFact[n - r] % MOD;
-}
-\end{lstlisting}
+\subsection{Tổng $\sum_k P(k)\binom{n}{k}$ với $n$ lớn, $P$ bậc nhỏ}
+Đặt $k^{\underline{r}} = k(k-1)\cdots(k-r+1)$. Khi đó $k^{\underline{r}}\binom{n}{k} = n^{\underline{r}}\binom{n-r}{k-r}$ \\
+$\implies \sum_{k=0}^n k^{\underline{r}}\binom{n}{k} = n^{\underline{r}}\, 2^{n-r}$ ($=0$ nếu $r>n$). \\
+{\small $\sum k\binom nk = n2^{n-1}$, \quad $\sum k^2\binom nk = n(n+1)2^{n-2}$}
+\kactlimport{SumPoly.h}
 
-The factorial/inverse-factorial method requires a prime modulus
-and $N < M$. It does not directly apply to arbitrary composite
-moduli.
+\subsection{Hệ số đa thức và xâu thứ $k$ theo từ điển}
+Số hoán vị của $n$ phần tử, loại $i$ có $a_i$ phần tử:
+$\binom{n}{a_1,\dots,a_m} = \frac{n!}{a_1!\cdots a_m!} = \binom{n}{a_1}\binom{n-a_1}{a_2}\cdots$.
+\kactlimport{KthPermutation.h}
 
-\subsection{Geometric Series Modulo Arbitrary M}
-To compute $S(n) = \sum_{i=0}^{n} a^i = 1 + a + a^2 + \dots + a^n \pmod M$ in $\mathcal{O}(\log^2 n)$ (or $\mathcal{O}(\log n)$) without requiring modular inverse (valid for composite $M$):
-If $n = 0$: $S(0) = 1$. \\
-If $n$ is odd ($n+1$ terms is even): \\
-\[ S(n) = \left(1 + a^{\frac{n+1}{2}}\right) S\left(\frac{n-1}{2}\right) \pmod M \]
-If $n$ is even ($n+1$ terms is odd): \\
-\[ S(n) = 1 + a \cdot S(n-1) \pmod M \]
+\section{Lý thuyết xác suất}
+Gọi $X$ là biến ngẫu nhiên rời rạc với xác suất nhận giá trị $x$ là $p_X(x)$. Khi đó, giá trị kỳ vọng (trung bình) của nó là $\mu=\mathbb{E}(X)=\sum_x x p_X(x)$ và phương sai là $\sigma^2=V(X)=\mathbb{E}(X^2)-(\mathbb{E}(X))^2=\sum_x(x-\mathbb{E}(X))^2 p_X(x)$, trong đó $\sigma$ là độ lệch chuẩn. Nếu $X$ là biến ngẫu nhiên liên tục, nó sẽ có hàm mật độ xác suất $f_X(x)$, và các tổng ở trên được thay bằng tích phân với $p_X(x)$ thay bằng $f_X(x)$ \\
+Kỳ vọng có tính tuyến tính: \\
+$$\mathbb{E}(aX+bY) = a\mathbb{E}(X)+b\mathbb{E}(Y)$$ \\
+Đối với $X$ và $Y$ độc lập: \\
+$V(aX+bY) = a^2V(X)+b^2V(Y)$
 
-\begin{lstlisting}[language=C++]
-ll geomSeries(ll a, ll n, ll m) {
-	if (n == 0) return 1 % m;
-	if (n % 2) {
-		ll half = geomSeries(a, (n - 1) / 2, m);
-		ll p = modpow(a, (n + 1) / 2, m);
-		return (__int128)(1 + p) * half % m;
-	}
-	return (1 + (__int128)(a % m) * geomSeries(a, n - 1, m)) % m;
-}
-\end{lstlisting}
+\subsection{Các phân phối rời rạc}
 
-\section{Probability theory}
-Let $X$ be a discrete random variable with probability $p_X(x)$ of assuming the value $x$. It will then have an expected value (mean) $\mu=\mathbb{E}(X)=\sum_xxp_X(x)$ and variance $\sigma^2=V(X)=\mathbb{E}(X^2)-(\mathbb{E}(X))^2=\sum_x(x-\mathbb{E}(X))^2p_X(x)$ where $\sigma$ is the standard deviation. If $X$ is instead continuous it will have a probability density function $f_X(x)$ and the sums above will instead be integrals with $p_X(x)$ replaced by $f_X(x)$.
-
-Expectation is linear:
-\[\mathbb{E}(aX+bY) = a\mathbb{E}(X)+b\mathbb{E}(Y)\]
-For independent $X$ and $Y$, \[V(aX+bY) = a^2V(X)+b^2V(Y).\]
-
-\subsection{Discrete distributions}
-
-\subsubsection{Binomial distribution}
-The number of successes in $n$ independent yes/no experiments, each which yields success with probability $p$ is $\textrm{Bin}(n,p),\,n=1,2,\dots,\, 0\leq p\leq1$.
+\subsubsection{Phân phối nhị thức (Binomial distribution)}
+Số lần thành công trong $n$ phép thử độc lập có kết quả có/không (thành công/thất bại), mỗi phép thử có xác suất thành công là $p$, tuân theo phân phối $\textrm{Bin}(n,p),\,n=1,2,\dots,\, 0\leq p\leq1$.
 \[p(k)=\binom{n}{k}p^k(1-p)^{n-k}\]
 \[\mu = np,\,\sigma^2=np(1-p)\]
-$\textrm{Bin}(n,p)$ is approximately $\textrm{Po}(np)$ for small $p$.
+$\textrm{Bin}(n,p)$ xấp xỉ $\textrm{Po}(np)$ (phân phối Poisson) khi $p$ nhỏ.
 
-\subsubsection{First success distribution}
-The number of trials needed to get the first success in independent yes/no experiments, each which yields success with probability $p$ is $\textrm{Fs}(p),\,0\leq p\leq1$.
+\subsubsection{Phân phối số lần thử tới thành công đầu tiên (First success distribution)}
+Số phép thử cần thiết để nhận được lần thành công đầu tiên trong các phép thử độc lập có kết quả có/không, mỗi phép thử có xác suất thành công là $p$, tuân theo phân phối $\textrm{Fs}(p),\,0\leq p\leq1$ (dạng hình học dịch chuyển/Geometric distribution bắt đầu từ 1).
 \[p(k)=p(1-p)^{k-1},\,k=1,2,\dots\]
 \[\mu = \frac1p,\,\sigma^2=\frac{1-p}{p^2}\]
