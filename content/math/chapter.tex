@@ -61,36 +61,91 @@ c_1 & c_2 & c_3 & \dots & c_k \\
 \end{align*}
 với $r=\sqrt{a^2+b^2}, \phi=\operatorname{atan2}(b,a)$.
 
-\section{Geometry}
+\section{Hình học}
 
-\subsection{Triangles}
-Side lengths: $a,b,c$\\
-Semiperimeter: $p=\dfrac{a+b+c}{2}$\\
-Area: $A=\sqrt{p(p-a)(p-b)(p-c)}$\\
-Circumradius: $R=\dfrac{abc}{4A}$\\
-Inradius: $r=\dfrac{A}{p}$\\
-Length of median (divides triangle into two equal-area triangles): $m_a=\tfrac{1}{2}\sqrt{2b^2+2c^2-a^2}$\\
-Length of bisector (divides angles in two): $s_a=\sqrt{bc\left[1-\left(\dfrac{a}{b+c}\right)^2\right]}$\\
-Law of sines: $\dfrac{\sin\alpha}{a}=\dfrac{\sin\beta}{b}=\dfrac{\sin\gamma}{c}=\dfrac{1}{2R}$\\
-Law of cosines: $a^2=b^2+c^2-2bc\cos\alpha$\\
-Law of tangents: $\dfrac{a+b}{a-b}=\dfrac{\tan\dfrac{\alpha+\beta}{2}}{\tan\dfrac{\alpha-\beta}{2}}$\\
+\subsection{Tam giác}
 
-\subsection{Quadrilaterals}
-With side lengths $a,b,c,d$, diagonals $e, f$, diagonals angle $\theta$, area $A$ and
-magic flux $F=b^2+d^2-a^2-c^2$:
+Cho tam giác có độ dài ba cạnh $a,b,c$.
+\textbf{Nửa chu vi:}
+\[
+    p = \frac{a+b+c}{2}
+\]
+\textbf{Diện tích (công thức Heron):}
+\[
+    A = \sqrt{p(p-a)(p-b)(p-c)}
+\]
+\textbf{Bán kính đường tròn ngoại tiếp:}
+\[
+    R = \frac{abc}{4A}
+\]
+\textbf{Bán kính đường tròn nội tiếp:}
+\[
+    r = \frac{A}{p}
+\]
+\textbf{Độ dài đường trung tuyến:}
+Đường trung tuyến chia tam giác thành hai tam giác có diện tích bằng nhau.
+\[
+    m_a = \frac{1}{2}\sqrt{2b^2+2c^2-a^2}
+\]
+\textbf{Độ dài đường phân giác:}
+Đường phân giác chia một góc thành hai góc bằng nhau.
+\[
+    s_a = \sqrt{bc\left[1-\left(\frac{a}{b+c}\right)^2\right]}
+\]
+\textbf{Định lý sin:}
+\[
+    \frac{\sin\alpha}{a}
+    = \frac{\sin\beta}{b}
+    = \frac{\sin\gamma}{c}
+    = \frac{1}{2R}
+\]
+\textbf{Định lý cosin:}
+\[
+    a^2 = b^2+c^2-2bc\cos\alpha
+\]
 
-\[ 4A = 2ef \cdot \sin\theta = F\tan\theta = \sqrt{4e^2f^2-F^2} \]
+\textbf{Định lý tang:}
+\[
+    \frac{a+b}{a-b}
+    =
+    \frac{\tan\left(\frac{\alpha+\beta}{2}\right)}
+         {\tan\left(\frac{\alpha-\beta}{2}\right)}
+\]
 
-For cyclic quadrilaterals the sum of opposite angles is $180^\circ$,
-$ef = ac + bd$, and $A = \sqrt{(p-a)(p-b)(p-c)(p-d)}$. \\
+\subsection{Tứ giác}
+
+Cho tứ giác có độ dài các cạnh $a,b,c,d$, hai đường chéo $e,f$,
+góc giữa hai đường chéo $\theta$, diện tích $A$ và đặt
+\[
+F = b^2+d^2-a^2-c^2.
+\]
+
+Ta có:
+\begin{align*}
+    4A &= 2ef\sin\theta = F\tan\theta \\
+       &= \sqrt{4e^2f^2-F^2}.
+\end{align*}
+
+Đối với tứ giác nội tiếp, tổng hai góc đối bằng $180^\circ$.
+Ngoài ra, ta có:
+\begin{align*}
+    ef &= ac+bd, \\
+    A &= \sqrt{(p-a)(p-b)(p-c)(p-d)},
+\end{align*}
+trong đó $p = \dfrac{a+b+c+d}{2}$ là nửa chu vi tứ giác.
 
 \section{Tổng}
-\[ c^a + c^{a+1} + \dots + c^{b} = \frac{c^{b+1} - c^a}{c-1}, c \neq 1 \]
 \begin{align*}
-	1 + 2 + 3 + \dots + n &= \frac{n(n+1)}{2} \\
-	1^2 + 2^2 + 3^2 + \dots + n^2 &= \frac{n(2n+1)(n+1)}{6} \\
-	1^3 + 2^3 + 3^3 + \dots + n^3 &= \frac{n^2(n+1)^2}{4} \\
-	1^4 + 2^4 + 3^4 + \dots + n^4 &= \frac{n(n+1)(2n+1)(3n^2 + 3n - 1)}{30} \\
+    c^a + c^{a+1} + \dots + c^b
+    &= \frac{c^{b+1} - c^a}{c-1}, \quad c \neq 1 \\[6pt]
+    1 + 2 + 3 + \dots + n
+    &= \frac{n(n+1)}{2} \\
+    1^2 + 2^2 + 3^2 + \dots + n^2
+    &= \frac{n(n+1)(2n+1)}{6} \\
+    1^3 + 2^3 + 3^3 + \dots + n^3
+    &= \frac{n^2(n+1)^2}{4} \\
+    1^4 + 2^4 + 3^4 + \dots + n^4
+    &= \frac{n(n+1)(2n+1)(3n^2+3n-1)}{30}
 \end{align*}
 
 \subsection{Chia kẹo (Stars and Bars)}
