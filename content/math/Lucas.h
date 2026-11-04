@@ -9,7 +9,6 @@
  * Cần BinomMod.h: đặt \texttt{MOD} $= p$ rồi gọi \texttt{init()} trước.
  * Usage: MOD = 99991; init(); lucas(1e18, 12345);
  * Time: $\mathcal{O}(p + \log_p n)$
- * Status: chưa test
  */
 #pragma once
 

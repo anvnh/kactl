@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
+#pragma GCC optimize("O3")
+#pragma GCC optimize("unroll-loops")
 #define rep(i, a, b) for (int i = a; i < (b); ++i)
 #define sz(x) (int)(x).size()
 #define all(x) begin(x), end(x)

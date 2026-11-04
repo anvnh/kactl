@@ -9,7 +9,6 @@
  * Lucas.h.
  * Usage: MOD = 1000000007; init(); C(10, 3);
  * Time: $\mathcal{O}(N)$, mỗi truy vấn $\mathcal{O}(1)$
- * Status: chưa test
  */
 #pragma once
 

@@ -154,9 +154,9 @@ $x_i \ge 0$: $\binom{n+k-1}{k-1}$ \\
 $x_i \ge 1$ (cần $n \ge k$): $\binom{n-1}{k-1}$ \\
 $x_i \ge c_i$: đặt $n' = n - \sum c_i$, nếu $n' \ge 0$ thì đáp án là $\binom{n'+k-1}{k-1}$, ngược lại bằng $0$ \\
 $x_i \le u_i$: bù trừ theo tập $S$ các biến vi phạm ($x_i \ge u_i+1$): \\
-$$\sum_{S \subseteq [k]} (-1)^{|S|} \binom{n - \sum_{i \in S}(u_i+1) + k-1}{k-1},$$
+$\sum_{S \subseteq [k]} (-1)^{|S|} \binom{n - \sum_{i \in S}(u_i+1) + k-1}{k-1}$ \\
 bỏ các số hạng có $n - \sum_{i \in S}(u_i+1) < 0$. Nếu mọi $u_i = u$ thì
-$\sum_{j=0}^{k} (-1)^j \binom{k}{j}\binom{n - j(u+1) + k-1}{k-1}$.
+$\sum_{j=0}^{k} (-1)^j \binom{k}{j}\binom{n - j(u+1) + k-1}{k-1}$
 
 \section{Hệ số nhị thức và đa thức}
 
@@ -181,14 +181,55 @@ $\sum_{j=0}^{k} (-1)^j \binom{k}{j}\binom{n - j(u+1) + k-1}{k-1}$.
 \kactlimport{BinomMod.h}
 
 \subsection{Định lý Lucas}
-$p$ nguyên tố, $n=\overline{n_k\dots n_0}_p$, $r=\overline{r_k\dots r_0}_p$:
-$\binom{n}{r} \equiv \prod_i \binom{n_i}{r_i} \pmod p$ (bằng $0$ nếu có $n_i<r_i$).
+Cho $p$ là số nguyên tố. Viết biểu diễn cơ số $p$ của $n$ và $r$:
+\[
+    n = \sum_{i=0}^{k} n_i p^i,
+    \qquad
+    r = \sum_{i=0}^{k} r_i p^i.
+\]
+Theo định lý Lucas:
+\[
+    \binom{n}{r}
+    \equiv
+    \prod_{i=0}^{k}\binom{n_i}{r_i}
+    \pmod p.
+\]
+Kết quả bằng $0$ nếu tồn tại $i$ sao cho $n_i < r_i$.
 \kactlimport{Lucas.h}
 
-\subsection{Tổng $\sum_k P(k)\binom{n}{k}$ với $n$ lớn, $P$ bậc nhỏ}
-Đặt $k^{\underline{r}} = k(k-1)\cdots(k-r+1)$. Khi đó $k^{\underline{r}}\binom{n}{k} = n^{\underline{r}}\binom{n-r}{k-r}$ \\
-$\implies \sum_{k=0}^n k^{\underline{r}}\binom{n}{k} = n^{\underline{r}}\, 2^{n-r}$ ($=0$ nếu $r>n$). \\
-{\small $\sum k\binom nk = n2^{n-1}$, \quad $\sum k^2\binom nk = n(n+1)2^{n-2}$}
+\subsection{Tổng $\sum_{k=0}^{n} P(k)\binom{n}{k}$ với $n$ lớn, $P$ bậc nhỏ}
+
+Đặt giai thừa giảm:
+\[
+    k^{\underline r}
+    = k(k-1)\cdots(k-r+1).
+\]
+Ta có đồng nhất thức:
+\[
+    k^{\underline r}\binom{n}{k}
+    = n^{\underline r}\binom{n-r}{k-r}.
+\]
+Suy ra:
+\[
+\begin{aligned}
+    \sum_{k=0}^{n} k^{\underline r}\binom{n}{k}
+    &= n^{\underline r}
+       \sum_{k=r}^{n}\binom{n-r}{k-r} \\
+    &= n^{\underline r}2^{n-r}.
+\end{aligned}
+\]
+Quy ước kết quả bằng $0$ nếu $r>n$.
+
+Một số trường hợp thường gặp:
+\[
+    \sum_{k=0}^{n} k\binom{n}{k}
+    = n2^{n-1}
+\]
+\[
+    \sum_{k=0}^{n} k^2\binom{n}{k}
+    = n(n+1)2^{n-2}.
+\]
+
 \kactlimport{SumPoly.h}
 
 \subsection{Hệ số đa thức và xâu thứ $k$ theo từ điển}
@@ -201,7 +242,7 @@ Gọi $X$ là biến ngẫu nhiên rời rạc với xác suất nhận giá tr�
 Kỳ vọng có tính tuyến tính: \\
 $$\mathbb{E}(aX+bY) = a\mathbb{E}(X)+b\mathbb{E}(Y)$$ \\
 Đối với $X$ và $Y$ độc lập: \\
-$V(aX+bY) = a^2V(X)+b^2V(Y)$
+$$V(aX+bY) = a^2V(X)+b^2V(Y)$$
 
 \subsection{Các phân phối rời rạc}
 
