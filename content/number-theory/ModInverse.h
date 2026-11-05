@@ -2,20 +2,22 @@
  * Author: Simon Lindholm
  * Date: 2016-07-24
  * License: CC0
- * Source: Russian page
- * Description: O(logM)
- * Status: Works
+ * Description:
+ * Time: O(\log M)
  */
 #pragma once
-#include <cassert>
 #include "euclid.h"
+#include <cassert>
 
 // Case 1: M is prime.
 ll modinvPrime(ll a, ll M) {
 	ll r = 1, e = M - 2;
-	a %= M; if (a < 0) a += M;
+	a %= M;
+	if (a < 0)
+		a += M;
 	for (; e; a = a * a % M, e >>= 1)
-		if (e & 1) r = r * a % M;
+		if (e & 1)
+			r = r * a % M;
 	return r;
 }
 // Case 2: M is arbitrary. Need gcd(a, M) == 1
