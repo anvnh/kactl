@@ -38,8 +38,8 @@ void fft(vector<C> &a) {
 	for (int k = 1; k < n; k *= 2)
 		for (int i = 0; i < n; i += 2 * k)
 			rep(j, 0, k) {
-				// C z = rt[j+k] * a[i+j+k]; // (nhanh hơn 25% nếu tự viết phép
-				// nhân) include-line
+				// C z = rt[j + k] * a[i + j + k];
+				// (nhanh hơn 25% nếu tự viết phép nhân) include-line
 				auto x = (double *)&rt[j + k],
 					 y = (double *)&a[i + j + k]; /// exclude-line
 				C z(x[0] * y[0] - x[1] * y[1],
