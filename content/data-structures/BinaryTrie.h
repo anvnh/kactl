@@ -3,15 +3,17 @@
  * Date: 2026-10-22
  * License: CC0
  * Source: folklore
- * Description: Binary Trie (0-1 Trie) for dynamic insertion, deletion,
- * and bitwise XOR queries (maximum, minimum, and count <= k) on non-negative integers.
- * Time: O(B) per operation, where B is the bit length (B = 30 for <= 1e9).
+ * Description: Binary Trie (0-1 Trie) hỗ trợ thêm, xóa phần tử và truy vấn
+ *  XOR trên các số nguyên không âm, bao gồm XOR lớn nhất, nhỏ nhất
+ *  và đếm số phần tử y thỏa mãn $(x ^ y) <= k$
+ * Time: O(B) cho mỗi thao tác, với B là số bit của giá trị (B = 30 nếu x <=
+ * 1e9).
  * Usage:
- *   BinaryTrie tr;
- *   tr.insert(x); tr.erase(x);
- *   tr.maxXor(x); // returns max (x ^ y) for y in trie
- *   tr.minXor(x); // returns min (x ^ y) for y in trie
- *   tr.countLeq(x, k); // count y in trie such that (x ^ y) <= k
+ *    - BinaryTrie tr;
+ *    - tr.insert(x); tr.erase(x);
+ *    - tr.maxXor(x); // trả về max (x ^ y) với y thuộc Trie
+ *    - tr.minXor(x); // trả về min (x ^ y) với y thuộc Trie
+ *    - tr.countLeq(x, k); // đếm số y trong Trie thỏa mãn (x ^ y) <= k
  * Status: stress-tested
  */
 #pragma once
@@ -68,20 +70,24 @@ struct BinaryTrie {
 	}
 	// Count number of elements y in trie such that (x ^ y) <= k
 	int countLeq(int x, int k) {
-        if (k < 0) return 0;
-        if (k >= (1 << B)) return t[0].cnt;
+		if (k < 0)
+			return 0;
+		if (k >= (1 << B))
+			return t[0].cnt;
 
-        int u = 0, ans = 0;
-        for (int i = B - 1; i >= 0; --i) {
-            int bx = (x >> i) & 1, bk = (k >> i) & 1;
-            if (bk) {
-                if (t[u].ch[bx]) ans += t[t[u].ch[bx]].cnt;
-                u = t[u].ch[!bx];
-            } else {
-                u = t[u].ch[bx];
-            }
-            if (!u) return ans;
-        }
-        return ans + t[u].cnt;
-    }
+		int u = 0, ans = 0;
+		for (int i = B - 1; i >= 0; --i) {
+			int bx = (x >> i) & 1, bk = (k >> i) & 1;
+			if (bk) {
+				if (t[u].ch[bx])
+					ans += t[t[u].ch[bx]].cnt;
+				u = t[u].ch[!bx];
+			} else {
+				u = t[u].ch[bx];
+			}
+			if (!u)
+				return ans;
+		}
+		return ans + t[u].cnt;
+	}
 };

@@ -1,4 +1,4 @@
-\chapter{Toán}
+\chapter{Math}
 
 \section{Phương trình}
 
@@ -52,11 +52,25 @@ c_1 & c_2 & c_3 & \dots & c_k \\
 \]
 
 \section{Lượng giác}
-\begin{align*}
-	a\cos x+b\sin x&=r\cos(x-\phi)\\
-	a\sin x+b\cos x&=r\sin(x+\phi)
-\end{align*}
-với $r=\sqrt{a^2+b^2}, \phi=\operatorname{atan2}(b,a)$.
+\begin{gather*}
+    a\cos x+b\sin x=r\cos(x-\phi)\\
+    a\sin x+b\cos x=r\sin(x+\phi)
+\end{gather*}
+với $r=\sqrt{a^2+b^2},\ \phi=\operatorname{atan2}(b,a)$.
+\begin{gather*}
+    \sin(a\pm b)=\sin a\cos b\pm\cos a\sin b\\
+    \cos(a\pm b)=\cos a\cos b\mp\sin a\sin b\\
+    \tan(a\pm b)=\frac{\tan a\pm\tan b}{1\mp\tan a\tan b}\\
+    \sin 2a=2\sin a\cos a,\qquad
+    \cos 2a=\cos^2 a-\sin^2 a=2\cos^2 a-1\\
+    \sin 3a=3\sin a-4\sin^3 a,\qquad
+    \cos 3a=4\cos^3 a-3\cos a\\
+    \sin a\pm\sin b=2\sin\frac{a\pm b}{2}\cos\frac{a\mp b}{2}\\
+    \cos a+\cos b=2\cos\frac{a+b}{2}\cos\frac{a-b}{2}\\
+    \cos a-\cos b=-2\sin\frac{a+b}{2}\sin\frac{a-b}{2}
+\end{gather*}
+Đặt $t=\tan\frac{x}{2}$: $\sin x=\frac{2t}{1+t^2}$,
+$\cos x=\frac{1-t^2}{1+t^2}$.
 
 \section{Hình học}
 
@@ -130,6 +144,32 @@ Ngoài ra, ta có:
     A &= \sqrt{(p-a)(p-b)(p-c)(p-d)},
 \end{align*}
 trong đó $p = \dfrac{a+b+c+d}{2}$ là nửa chu vi tứ giác.
+
+\subsubsection{Hình học 3D}
+Với $a=(a_x,a_y,a_z)$, $b=(b_x,b_y,b_z)$:
+\begin{align*}
+a\times b &= (a_yb_z-a_zb_y,\; a_zb_x-a_xb_z,\; a_xb_y-a_yb_x)\\
+|a\times b| &= |a||b|\sin\theta, \quad a\cdot b = |a||b|\cos\theta
+\end{align*}
+$a\times b$ vuông góc với cả $a$ và $b$ (quy tắc bàn tay phải), $b\times a=-a\times b$.
+\begin{itemize}
+\item Tích hỗn hợp: $[a,b,c]=a\cdot(b\times c)=\det[a\;b\;c]$. Dấu cho biết hướng $a,b,c$.
+\item Diện tích tam giác $ABC$: $\frac12|(B-A)\times(C-A)|$.
+\item Thể tích hình hộp: $|[a,b,c]|$. Thể tích tứ diện $ABCD$:
+      $\frac16\left|(B-A)\cdot\big((C-A)\times(D-A)\big)\right|$.
+\item Mặt phẳng qua $A,B,C$: pháp vector $n=(B-A)\times(C-A)$,
+      phương trình $n\cdot(X-A)=0$, tức $ax+by+cz+d=0$ với $(a,b,c)=n$, $d=-n\cdot A$.
+\item Điểm $P$ tới mặt phẳng: $\dfrac{|n\cdot(P-A)|}{|n|}$.
+\item Điểm $P$ tới đường thẳng qua $A$, hướng $d$: $\dfrac{|(P-A)\times d|}{|d|}$.
+\item Giao đường thẳng $X=P+td$ với mặt phẳng $(n,A)$:
+      $t=\dfrac{n\cdot(A-P)}{n\cdot d}$ (nếu $n\cdot d=0$ thì song song hoặc nằm trong mặt phẳng).
+\item Khoảng cách hai đường chéo nhau (qua $A_1$ hướng $d_1$, qua $A_2$ hướng $d_2$):
+      $\dfrac{|(A_2-A_1)\cdot(d_1\times d_2)|}{|d_1\times d_2|}$.
+\item Góc giữa hai mặt phẳng: $\cos\varphi=\dfrac{|n_1\cdot n_2|}{|n_1||n_2|}$.
+\item Quay $v$ quanh trục đơn vị $k$ một góc $\theta$ (Rodrigues):
+      $v'=v\cos\theta+(k\times v)\sin\theta+k(k\cdot v)(1-\cos\theta)$.
+\item Cầu: $V=\frac43\pi r^3$, $S=4\pi r^2$. Nón: $V=\frac13\pi r^2h$. Chỏm cầu cao $h$: $V=\frac{\pi h^2(3r-h)}{3}$.
+\end{itemize}
 
 \section{Tổng}
 \begin{align*}
@@ -253,3 +293,57 @@ $\textrm{Bin}(n,p)$ xấp xỉ $\textrm{Po}(np)$ (phân phối Poisson) khi $p$ 
 Số phép thử cần thiết để nhận được lần thành công đầu tiên trong các phép thử độc lập có kết quả có/không, mỗi phép thử có xác suất thành công là $p$, tuân theo phân phối $\textrm{Fs}(p),\,0\leq p\leq1$ (dạng hình học dịch chuyển/Geometric distribution bắt đầu từ 1).
 \[p(k)=p(1-p)^{k-1},\,k=1,2,\dots\]
 \[\mu = \frac1p,\,\sigma^2=\frac{1-p}{p^2}\]
+
+\section{Công thức nhanh}
+
+\subsection{Số học}
+\begin{itemize}
+\item Số ước $\tau(n)=\prod(e_i+1)$, tổng ước $\sigma(n)=\prod\frac{p_i^{e_i+1}-1}{p_i-1}$.
+\item Wilson: $p$ nguyên tố $\iff (p-1)!\equiv -1 \pmod p$.
+\item Euler mở rộng (tháp lũy thừa): nếu $n\ge\log_2 m$ thì
+      $a^n\equiv a^{\,(n \bmod \varphi(m))+\varphi(m)} \pmod m$.
+\item Nghịch đảo $1..n$ modulo nguyên tố $p$:
+      $\mathrm{inv}[i]=-\lfloor p/i\rfloor\cdot \mathrm{inv}[p\bmod i] \bmod p$.
+\item $a$ là thặng dư bậc hai mod $p$ $\iff a^{(p-1)/2}\equiv 1$ (tiêu chuẩn Euler).
+\end{itemize}
+
+\subsection{Fibonacci}
+\begin{itemize}
+\item $\gcd(F_m,F_n)=F_{\gcd(m,n)}$; $F_{m+n}=F_mF_{n+1}+F_{m-1}F_n$.
+\item Cassini: $F_{n-1}F_{n+1}-F_n^2=(-1)^n$.
+\item Nhân đôi nhanh: $F_{2k}=F_k(2F_{k+1}-F_k)$, $F_{2k+1}=F_k^2+F_{k+1}^2$.
+\item $\sum_{i=1}^n F_i=F_{n+2}-1$, $\sum_{i=1}^n F_i^2=F_nF_{n+1}$.
+\item Chu kỳ Pisano: $\pi(2)=3,\ \pi(5)=20,\ \pi(10)=60,\ \pi(10^k)=15\cdot10^{k-1}$ ($k\ge3$).
+\end{itemize}
+
+\subsection{Tổ hợp}
+\begin{itemize}
+\item Ballot: số dãy $a$ bước lên, $b$ bước xuống ($a\ge b$) không bao giờ xuống dưới 0:
+      $\binom{a+b}{b}-\binom{a+b}{b-1}$.
+\item Vòng/chuỗi tô $m$ màu, quay (Burnside): $\frac1n\sum_{d\mid n}\varphi(n/d)\,m^{d}$.
+\item Nội suy Lagrange: $P(x)=\sum_i y_i\prod_{j\ne i}\frac{x-x_j}{x_i-x_j}$.
+      $\sum_{i=1}^n i^k$ là đa thức bậc $k+1$ theo $n$ $\Rightarrow$ cần $k+2$ điểm.
+\item Số đồ thị gán nhãn trên $n$ đỉnh: $2^{\binom n2}$.
+\end{itemize}
+
+\subsection{Đồ thị}
+\begin{itemize}
+\item Euler (đồ thị phẳng, $C$ thành phần liên thông): $V-E+F=1+C$ (liên thông: $=2$).
+      Đơn đồ thị phẳng, $V\ge3$: $E\le 3V-6$.
+\item Cayley: $n^{n-2}$ cây gán nhãn. Kirchhoff: số cây khung $=$ định thức của
+      ma trận Laplace $L=D-A$ sau khi bỏ một hàng và một cột bất kỳ.
+\item Đồ thị hai phía: König $\Rightarrow$ min vertex cover $=$ max matching,
+      max independent set $=V-$ max matching.
+\item Hall: có ghép đầy đủ phía trái $\iff |N(S)|\ge|S|$ với mọi $S$ phía trái.
+\item Dilworth: số chuỗi ít nhất phủ poset $=$ kích thước phản xích lớn nhất.
+\end{itemize}
+
+\subsection{Hình học}
+\begin{itemize}
+\item Pick (đa giác nguyên): $A=I+\frac B2-1$; số điểm nguyên trên đoạn
+      $=\gcd(|\Delta x|,|\Delta y|)$.
+\item Thể tích tứ diện $ABCD$: $\frac16\left|(B-A)\cdot\big((C-A)\times(D-A)\big)\right|$.
+\item Khoảng cách điểm tới mặt phẳng $ax+by+cz+d=0$: $\frac{|ax_0+by_0+cz_0+d|}{\sqrt{a^2+b^2+c^2}}$.
+\item Cầu: $V=\frac43\pi r^3$, $S=4\pi r^2$. Nón: $V=\frac13\pi r^2h$.
+      Hình quạt góc $\theta$: $\frac12r^2\theta$.
+\end{itemize}

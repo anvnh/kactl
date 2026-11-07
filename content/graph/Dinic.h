@@ -3,9 +3,12 @@
  * Date: 2019-04-26
  * License: CC0
  * Source: https://cp-algorithms.com/graph/dinic.html
- * Description: Flow algorithm with complexity $O(VE\log U)$ where $U = \max |\text{cap}|$.
- * $O(\min(E^{1/2}, V^{2/3})E)$ if $U = 1$; $O(\sqrt{V}E)$ for bipartite matching.
- * Status: Tested on SPOJ FASTFLOW and SPOJ MATCHING, stress-tested
+ * Description: Tìm luồng cực đại bằng thuật toán Dinic. Độ phức tạp:
+ * $O(VE\log U)$, với $U = \max |\text{cap}|$. Nếu $U = 1$ thì độ phức tạp là
+ * $O(\min(E^{1/2}, V^{2/3})E)$. Với bài toán ghép cặp hai phía thì là
+ * $O(\sqrt{V}E)$.
+ * Status: Tested on SPOJ FASTFLOW and SPOJ
+ * MATCHING, stress-tested
  */
 #pragma once
 
@@ -23,9 +26,10 @@ struct Dinic {
 		adj[b].push_back({a, sz(adj[a]) - 1, rcap, rcap});
 	}
 	ll dfs(int v, int t, ll f) {
-		if (v == t || !f) return f;
-		for (int& i = ptr[v]; i < sz(adj[v]); i++) {
-			Edge& e = adj[v][i];
+		if (v == t || !f)
+			return f;
+		for (int &i = ptr[v]; i < sz(adj[v]); i++) {
+			Edge &e = adj[v][i];
 			if (lvl[e.to] == lvl[v] + 1)
 				if (ll p = dfs(e.to, t, min(f, e.c))) {
 					e.c -= p, adj[e.to][e.rev].c += p;
@@ -35,8 +39,9 @@ struct Dinic {
 		return 0;
 	}
 	ll calc(int s, int t) {
-		ll flow = 0; q[0] = s;
-		rep(L,0,31) do { // 'int L=30' maybe faster for random data
+		ll flow = 0;
+		q[0] = s;
+		rep(L, 0, 31) do { // 'int L=30' maybe faster for random data
 			lvl = ptr = vi(sz(q));
 			int qi = 0, qe = lvl[s] = 1;
 			while (qi < qe && !lvl[t]) {
@@ -45,8 +50,11 @@ struct Dinic {
 					if (!lvl[e.to] && e.c >> (30 - L))
 						q[qe++] = e.to, lvl[e.to] = lvl[v] + 1;
 			}
-			while (ll p = dfs(s, t, LLONG_MAX)) flow += p;
-		} while (lvl[t]);
+			while (ll p = dfs(s, t, LLONG_MAX))
+				flow += p;
+		}
+		while (lvl[t])
+			;
 		return flow;
 	}
 	bool leftOfMinCut(int a) { return lvl[a] != 0; }

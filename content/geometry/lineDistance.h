@@ -5,22 +5,22 @@
  * Source: Basic math
  * Description:\\
 \begin{minipage}{75mm}
-Returns the signed distance between point p and the line containing points a and b.
-Positive value on left side and negative on right as seen from a towards b. a==b gives nan.
-P is supposed to be Point<T> or Point3D<T> where T is e.g. double or long long.
-It uses products in intermediate steps so watch out for overflow if using int or long long.
-Using Point3D will always give a non-negative distance. For Point3D, call .dist on the result of the cross product.
+Tính khoảng cách có dấu từ điểm $p$ đến đường thẳng đi qua hai điểm $a$ và $b$.
+Giá trị dương nếu $p$ nằm bên trái và âm nếu nằm bên phải khi nhìn theo hướng từ
+$a$ đến $b$. Nếu $a=b$, kết quả là nan. P được giả định là Point<T> hoặc
+Point3D<T>, trong đó T có thể là double hoặc long long. Các phép nhân trung gian
+có thể gây tràn số khi sử dụng int hoặc long long. Với Point3D, kết quả luôn
+không âm. Khi đó, gọi .dist() trên kết quả của tích có hướng để lấy khoảng cách.
 \end{minipage}
 \begin{minipage}{15mm}
 \includegraphics[width=\textwidth]{content/geometry/lineDistance}
 \end{minipage}
- * Status: tested
+ * Status: Đã kiểm thử
  */
 #pragma once
 
 #include "Point.h"
 
-template<class P>
-double lineDist(P a, P b, P p) {
-	return (double)(b-a).cross(p-a)/(b-a).dist();
+template <class P> double lineDist(P a, P b, P p) {
+	return (double)(b - a).cross(p - a) / (b - a).dist();
 }

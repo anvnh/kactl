@@ -5,8 +5,9 @@
  * Source: https://github.com/stjepang/snippets/blob/master/convex_hull.cpp
  * Description:
 \\\begin{minipage}{75mm}
-Returns a vector of the points of the convex hull in counter-clockwise order.
-Points on the edge of the hull between two other points are not considered part of the hull.
+Trả về vector chứa các điểm thuộc bao lồi (convex hull) theo thứ tự ngược chiều
+kim đồng hồ. Các điểm nằm trên cạnh bao lồi, giữa hai đỉnh khác, không được xem
+là đỉnh của bao lồi.
 \end{minipage}
 \begin{minipage}{15mm}
 \vspace{-6mm}
@@ -14,21 +15,23 @@ Points on the edge of the hull between two other points are not considered part 
 \vspace{-6mm}
 \end{minipage}
  * Time: O(n \log n)
- * Status: stress-tested, tested with kattis:convexhull
-*/
+ * Status: Đã kiểm thử ngẫu nhiên cường độ cao, kiểm thử trên Kattis: convexhull
+ */
 #pragma once
 
 #include "Point.h"
 
 typedef Point<ll> P;
 vector<P> convexHull(vector<P> pts) {
-	if (sz(pts) <= 1) return pts;
+	if (sz(pts) <= 1)
+		return pts;
 	sort(all(pts));
-	vector<P> h(sz(pts)+1);
+	vector<P> h(sz(pts) + 1);
 	int s = 0, t = 0;
 	for (int it = 2; it--; s = --t, reverse(all(pts)))
 		for (P p : pts) {
-			while (t >= s + 2 && h[t-2].cross(h[t-1], p) <= 0) t--;
+			while (t >= s + 2 && h[t - 2].cross(h[t - 1], p) <= 0)
+				t--;
 			h[t++] = p;
 		}
 	return {h.begin(), h.begin() + t - (t == 2 && h[0] == h[1])};

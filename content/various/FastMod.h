@@ -3,13 +3,14 @@
  * Date: 2020-05-30
  * License: CC0
  * Source: https://en.wikipedia.org/wiki/Barrett_reduction
- * Description: Compute $a \% b$ about 5 times faster than usual, where $b$ is constant but not known at compile time.
- * Returns a value congruent to $a \pmod b$ in the range $[0, 2b)$.
- * Status: proven correct, stress-tested
- * Measured as having 4 times lower latency, and 8 times higher throughput, see stress-test.
- * Details:
- * More precisely, it can be proven that the result equals 0 only if $a = 0$,
- * and otherwise lies in $[1, (1 + a/2^64) * b)$.
+ * Description: Tính $a \% b$ nhanh hơn khoảng 5 lần so với cách thông thường,
+ * với $b$ là hằng số nhưng không biết tại thời điểm biên dịch. Trả về một giá
+ * trị đồng dư với $a \pmod b$ trong khoảng $[0, 2b)$.
+ * Status: proven correct,
+ * stress-tested Đo được độ trễ thấp hơn 4 lần và thông lượng cao hơn 8 lần, xem
+ * stress-test.
+ * Details: Cụ thể hơn, có thể chứng minh kết quả bằng 0 chỉ khi $a
+ * = 0$, và ngược lại nằm trong khoảng $[1, (1 + a/2^64) * b)$.
  */
 #pragma once
 

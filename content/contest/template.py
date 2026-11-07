@@ -18,3 +18,4 @@ from fractions import Fraction
 from decimal import Decimal, getcontext
 getcontext().prec = 20
 from array import array
+points.sort(key=lambda p: (p[0], -p[1]))
