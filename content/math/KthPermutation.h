@@ -9,10 +9,14 @@
  * phần còn lại $\binom{n-1}{a_1,\dots,a_c-1,\dots,a_m}$; nếu $k \le$
  * \texttt{cnt} thì chốt $c$, ngược lại $k \mathrel{-}=$ \texttt{cnt}. Mọi phép
  * cộng/nhân bị chặn trên bởi \texttt{INF} để không tràn số (không cần BigInt).
- * Gọi \texttt{initPascal()} một lần ở đầu. Usage: initPascal(); kth({2, 1, 1},
- * 5); // các ký tự a,a,b,c: aabc, aacb, abac, abca, acab => "acab" Time:
- * $\mathcal{O}(M^2)$ khởi tạo, $\mathcal{O}(n \cdot m^2)$ mỗi truy vấn Status:
- * chưa test
+ * Gọi \texttt{initPascal()} một lần ở đầu.
+ * Usage: initPascal(); kth({2, 1, 1}, 5); // các ký tự a,a,b,c: aabc, aacb,
+ * abac, abca, acab => "acab"
+ *
+ * Time: $\mathcal{O}(M^2)$ khởi tạo, $\mathcal{O}(n
+ * \cdot m^2)$ mỗi truy vấn
+ *
+ * Status: đã test với brute force
  */
 #pragma once
 

@@ -1,27 +1,32 @@
 /**
- * Author: 罗穗骞, chilli
- * Date: 2019-04-11
- * License: Unknown
- * Source: Suffix array - a powerful tool for dealing with strings
- *  (Tài liệu huấn luyện đội tuyển IOI quốc gia Trung Quốc, 2009)
- * Description: Xây dựng mảng suffix array cho một chuỗi.
- *  sa[i] là vị trí bắt đầu của hậu tố đứng thứ i
- *  trong thứ tự từ điển của các hậu tố.
- *  Vector trả về có kích thước n+1, với sa[0] = n.
- *  Mảng lcp lưu độ dài tiền tố chung dài nhất của hai hậu tố
- *  liên tiếp trong suffix array:
- *  lcp[i] = lcp(sa[i], sa[i-1]), lcp[0] = 0.
- *  Chuỗi đầu vào không được chứa ký tự null ('\0').
- * Time: O(n log n)
- * Status: stress-tested
+ * Author: anvnh
+ * Date: 2026-11-07
+ * Source: KACTL
+ * Description: Xây dựng mảng hậu tố (suffix array) và mảng LCP của xâu $s$ bằng
+ * thuật toán nhân đôi (prefix doubling) kết hợp counting sort.
+ * \texttt{sa} là thứ tự từ điển của các hậu tố: \texttt{sa[0] = sz(s)} (hậu tố
+ * rỗng, luôn đứng đầu), các hậu tố thật nằm ở \texttt{sa[1..n]}.
+ * \texttt{lcp[i]} là độ dài tiền tố chung dài nhất của hai hậu tố
+ * \texttt{sa[i-1]} và \texttt{sa[i]}, còn \texttt{lcp[0] = 0}.
+ * LCP của hai hậu tố bất kỳ bằng min của \texttt{lcp} trên một đoạn liên tục
+ * (dùng kèm RMQ.h). Số xâu con phân biệt của $s$ bằng $n(n+1)/2$ trừ tổng
+ * \texttt{lcp}. Mọi ký tự phải nằm trong $[1, \texttt{lim})$ vì giá trị $0$
+ * dành cho ký tự kết thúc; mặc định \texttt{lim = 256} cho \texttt{string}. Với
+ * số nguyên lớn hơn, dùng \texttt{basic\_string<int>} và đặt \texttt{lim} bằng
+ * giá trị lớn nhất cộng $1$ (mọi giá trị phải $\ge 1$).
+ * Usage: string s;
+ * SuffixArray a(s); a.sa[i]; a.lcp[i]; long long distinct = (ll)n * (n + 1) / 2
+ * - accumulate(all(a.lcp), 0LL);
+ * Time: $\mathcal{O}(N \log N)$
+ * Status: Đã test với brute force
  */
 #pragma once
+
 struct SuffixArray {
 	vi sa, lcp;
-	SuffixArray(string s, int lim = 256) { // or vector<int>
-		s.push_back(0);
-		int n = sz(s), k = 0, a, b;
-		vi x(all(s)), y(n), ws(max(n, lim));
+	template <class S> SuffixArray(const S &s, int lim = 256) {
+		int n = sz(s) + 1, k = 0, a, b;
+		vi x(begin(s), end(s) + 1), y(n), ws(max(n, lim)), rnk(n);
 		sa = lcp = y, iota(all(sa), 0);
 		for (int j = 0, p = 0; p < n; j = max(1, j * 2), lim = p) {
 			p = j, iota(all(y), n - j);
@@ -36,8 +41,9 @@ struct SuffixArray {
 						 x[b] = (y[a] == y[b] && y[a + j] == y[b + j]) ? p - 1
 																	   : p++;
 		}
-		for (int i = 0, j; i < n - 1; lcp[x[i++]] = k)
-			for (k &&k--, j = sa[x[i] - 1]; s[i + k] == s[j + k]; k++)
+		rep(i, 1, n) rnk[sa[i]] = i;
+		for (int i = 0, j; i < n - 1; lcp[rnk[i++]] = k)
+			for (k &&k--, j = sa[rnk[i] - 1]; s[i + k] == s[j + k]; k++)
 				;
 	}
 };

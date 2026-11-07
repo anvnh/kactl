@@ -24,7 +24,9 @@
  *  $\mu(n) = (-1)^k$ với $k$ là số ước nguyên tố phân biệt của $n$.
  *  $\sum_{d \mid n} \mu(d) = [n = 1]$.
  * Usage: linearSieve(); gọi một lần, sau đó dùng lp, phi, mu, pr với $n \le$
- * LIM. Xem ví dụ ở cuối file. Time: O(LIM) Status: chưa test
+ * LIM. Xem ví dụ ở cuối file.
+ * Time: O(LIM)
+ * Status: đã test
  */
 #pragma once
 

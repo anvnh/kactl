@@ -4,16 +4,15 @@
  * License: CC0
  * Source: Tự viết
  * Description: Các hàm hỗ trợ băm chuỗi (String Hashing).
- * Status: Đã kiểm thử bằng stress test
+ *  Sử dụng modulo $2^{64}-1$ thay vì $2^{64}$ để hạn chế va chạm
+ *  trên các bộ test có chủ đích. Modulo này chậm hơn khoảng 2 lần
+ *  và cần cài đặt phức tạp hơn. Ví dụ, với modulo $2^{64}$, hai chuỗi
+ *  Thue-Morse dạng ABBA... và BAAB... có thể cho cùng hash.
+ *  Nếu dữ liệu đầu vào ngẫu nhiên, có thể thay bằng \texttt{typedef ull H;}.
+ *  Ngoài ra, có thể dùng modulo $10^9+7$ nếu không cần xét đến Birthday
+ * Paradox. Status: Đã kiểm thử bằng stress test
  */
 #pragma once
-
-// Phép toán modulo 2^64-1. Chậm hơn khoảng 2 lần so với modulo 2^64
-// và cần nhiều code hơn, nhưng hoạt động tốt trên các bộ test có chủ đích
-// (ví dụ: chuỗi Thue-Morse, trong đó ABBA... và BAAB... có độ dài 2^10 cho cùng
-// hash nếu sử dụng modulo 2^64). Có thể thay bằng "typedef ull H;" nếu cho rằng
-// dữ liệu test là ngẫu nhiên, hoặc sử dụng modulo 10^9+7 nếu Birthday Paradox
-// không phải vấn đề.
 typedef uint64_t ull;
 struct H {
 	ull x;
